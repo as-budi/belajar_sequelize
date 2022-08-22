@@ -3,7 +3,7 @@ import db from "../config/dbConnection.js";
 
 const { DataTypes } = Sequelize;
 
-const Users = db.define('user', {
+const employee = db.define('employee', {
     first_name: {
         type: DataTypes.STRING(40)
     },
@@ -29,17 +29,17 @@ const Users = db.define('user', {
     freezeTableName: true
 });
 
-const Branch = db.define('branch', {
+const branch = db.define('branch', {
     branch_name: {
         type: DataTypes.STRING(40)
     },
     mgr_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: "user",
-            key: "id"
-        },
-        onDelete: "SET NULL"
+        type: DataTypes.INTEGER
+        // references: {
+        //     model: "employee",
+        //     key: "id"
+        // },
+        // onDelete: "SET NULL"
     },
     mgr_start_date: {
         type: DataTypes.DATEONLY
@@ -48,6 +48,45 @@ const Branch = db.define('branch', {
     freezeTableName: true
 });
 
-export {Users, Branch};
+const client = db.define('client', {
+    client_name: {
+        type: DataTypes.STRING(40)
+    },
+    branch_id: {
+        type: DataTypes.INTEGER
+    }
+}, {
+    freezeTableName: true
+});
+
+const works_with = db.define('works_with', {
+    emp_id: {
+        type: DataTypes.INTEGER
+    },
+    client_id: {
+        type: DataTypes.INTEGER
+    },
+    total_sales: {
+        type: DataTypes.INTEGER
+    }
+}, {
+    freezeTableName: true
+});
+
+const branch_supplier = db.define('branch_supplier', {
+    branch_id: {
+        type: DataTypes.INTEGER
+    },
+    supplier_name: {
+        type: DataTypes.STRING(40)
+    },
+    supplier_type: {
+        type: DataTypes.STRING(40)
+    }
+}, {
+    freezeTableName: true
+});
+
+export {employee, branch, client, works_with, branch_supplier};
 
 
