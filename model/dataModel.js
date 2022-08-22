@@ -48,6 +48,24 @@ const branch = db.define('branch', {
     freezeTableName: true
 });
 
+// branch.belongsTo(employee, {
+//     foreignKey: "mgr_id",
+//     references: {
+//         model: "employee",
+//         key: "id"
+//     },
+//     onDelete: "SET NULL"
+// });
+
+// employee.belongsTo(branch, {
+//     foreignKey: "branch_id",
+//     references: {
+//         model: "branch",
+//         key: "id"
+//     },
+//     onDelete: "SET NULL"
+// });
+
 const client = db.define('client', {
     client_name: {
         type: DataTypes.STRING(40)
@@ -86,6 +104,41 @@ const branch_supplier = db.define('branch_supplier', {
 }, {
     freezeTableName: true
 });
+
+// try {
+//     await employee.sync();
+//     console.log('Table employee is created')
+// } catch (error) {
+//     console.error(error);
+// }
+
+// try {
+//     await branch.sync();
+//     console.log('Table branch is created')
+// } catch (error) {
+//     console.error(error);
+// }
+
+// try {
+//     await client.sync();
+//     console.log('Table client is created')
+// } catch (error) {
+//     console.error(error);
+// }
+
+// try {
+//     await works_with.sync();
+//     console.log('Table works_with is created')
+// } catch (error) {
+//     console.error(error);
+// }
+
+// try {
+//     await branch_supplier.sync();
+//     console.log('Table branch_supplier is created')
+// } catch (error) {
+//     console.error(error);
+// }
 
 export {employee, branch, client, works_with, branch_supplier};
 
